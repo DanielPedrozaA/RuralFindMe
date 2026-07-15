@@ -1,0 +1,17 @@
+{
+  "notice": "Todos los nombres, números, instituciones y lugares de este archivo son ficticios.",
+  "assigned": {
+    "id_type": "CC",
+    "id_number": "900000001",
+    "full_name": "ANA MARÍA PRUEBA LÓPEZ",
+    "vacancy_code": "9900000000011-1",
+    "department": "DEPARTAMENTO PRUEBA",
+    "municipality": "MUNICIPIO PRUEBA",
+    "institution": "ESE HOSPITAL DE PRUEBA"
+  },
+  "without_position": {
+    "id_type": "CE",
+    "id_number": "900000002",
+    "official_status": "Sin plaza asignada"
+  }
+}

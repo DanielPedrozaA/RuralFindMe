@@ -1,0 +1,55 @@
+# -*- mode: python ; coding: utf-8 -*-
+from pathlib import Path
+
+root = Path(SPECPATH)
+icon = root / "app" / "assets" / "app-icon.icns"
+a = Analysis(
+    [str(root / "app" / "main.py")],
+    pathex=[str(root)],
+    datas=[
+        (str(root / "app" / "config"), "app/config"),
+        (str(root / "app" / "assets"), "app/assets"),
+        (str(root / "frontend" / "dist"), "frontend/dist"),
+    ],
+    hiddenimports=[
+        "fitz",
+        "rapidfuzz",
+        "PySide6.QtWebChannel",
+        "PySide6.QtWebEngineCore",
+        "PySide6.QtWebEngineWidgets",
+    ],
+    excludes=["pandas", "numpy", "PIL", "IPython", "matplotlib", "scipy", "jedi", "zmq"],
+    optimize=1,
+)
+pyz = PYZ(a.pure)
+exe = EXE(
+    pyz,
+    a.scripts,
+    [],
+    name="RuralFindMe",
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=False,
+    console=False,
+    exclude_binaries=True,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+)
+coll = COLLECT(
+    exe,
+    a.binaries,
+    a.datas,
+    strip=False,
+    upx=False,
+    name="RuralFindMe",
+)
+app = BUNDLE(
+    coll,
+    name="RuralFindMe.app",
+    icon=str(icon),
+    bundle_identifier="co.ruralfindme.app",
+    version="1.1.3",
+    info_plist={"NSHighResolutionCapable": "True"},
+)

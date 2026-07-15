@@ -1,0 +1,138 @@
+* {
+    font-family: "Segoe UI", "Arial";
+    color: #17253D;
+    font-size: 14px;
+}
+QMainWindow, QWidget#page, QStackedWidget, QScrollArea, QScrollArea > QWidget > QWidget {
+    background: #F4F7FB;
+}
+QLabel#heroBadge, QLabel#kicker {
+    color: #167B73;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+QLabel#heroTitle {
+    color: #17253D;
+    font-size: 52px;
+    font-weight: 800;
+}
+QLabel#heroSubtitle {
+    color: #52617A;
+    font-size: 20px;
+    max-width: 760px;
+}
+QLabel#pageTitle {
+    color: #17253D;
+    font-size: 34px;
+    font-weight: 750;
+}
+QLabel#subtitle, QLabel#muted {
+    color: #657189;
+    font-size: 15px;
+}
+QFrame#card, QFrame#destinationCard {
+    background: #FFFFFF;
+    border: 1px solid #DDE5F0;
+    border-radius: 16px;
+}
+QLabel#cardTitle {
+    font-size: 18px;
+    font-weight: 700;
+}
+QLabel#note-info, QLabel#note-warning {
+    background: #E9F5F3;
+    color: #22625E;
+    border-radius: 9px;
+}
+QLabel#note-warning {
+    background: #FFF3DB;
+    color: #72521E;
+}
+QPushButton {
+    background: #FFFFFF;
+    border: 1px solid #CAD5E4;
+    border-radius: 9px;
+    padding: 10px 16px;
+    font-weight: 600;
+}
+QPushButton:hover { background: #F0F4F9; border-color: #AAB9CD; }
+QPushButton:pressed { background: #E4EBF4; }
+QPushButton#primaryButton {
+    background: #17253D;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 22px;
+    font-size: 15px;
+}
+QPushButton#primaryButton:hover { background: #243B5E; }
+QPushButton#secondaryButton { border-color: #39AFA3; color: #167B73; }
+QPushButton#linkButton { background: transparent; border: none; color: #167B73; }
+QFrame#dropZone {
+    background: #ECF8F6;
+    border: 2px dashed #62BDB4;
+    border-radius: 14px;
+}
+QLabel#dropIcon { color: #1A9387; font-size: 34px; font-weight: 300; }
+QLabel#dropTitle { color: #1E514E; font-size: 17px; font-weight: 700; }
+QTableWidget {
+    background: white;
+    alternate-background-color: #F8FAFD;
+    border: 1px solid #DDE5F0;
+    border-radius: 10px;
+    gridline-color: #E5EBF3;
+    selection-background-color: #DDF2EF;
+    selection-color: #17253D;
+}
+QHeaderView::section {
+    background: #EAF0F7;
+    color: #40516B;
+    border: none;
+    border-right: 1px solid #D4DEEA;
+    padding: 9px;
+    font-weight: 700;
+}
+QLineEdit, QComboBox {
+    background: #FFFFFF;
+    border: 1px solid #C9D5E4;
+    border-radius: 8px;
+    padding: 10px;
+    min-height: 20px;
+}
+QLineEdit:focus, QComboBox:focus { border: 2px solid #38A99E; }
+QCheckBox { spacing: 8px; }
+QProgressBar {
+    border: none;
+    background: #DFE7F1;
+    border-radius: 7px;
+    height: 14px;
+}
+QProgressBar::chunk { background: #39AFA3; border-radius: 7px; }
+QLabel#processingIcon { color: #F0B429; font-size: 64px; }
+QLabel#processingTitle { font-size: 28px; font-weight: 750; }
+QLabel#countdown { color: #6C63FF; font-size: 72px; font-weight: 850; min-height: 85px; }
+QFrame#resultCard {
+    background: #EEF4FA;
+    border: 1px solid #D8E2EE;
+    border-radius: 20px;
+}
+QFrame#resultCard[theme="success"] { background: #E4F6F2; border-color: #A8DDD5; }
+QFrame#resultCard[theme="relief"] { background: #F0ECFF; border-color: #CDC3FA; }
+QFrame#resultCard[theme="warning"] { background: #FFF1D8; border-color: #F2CC84; }
+QFrame#resultCard[theme="neutral"] { background: #EBF1F8; border-color: #CBD8E7; }
+QLabel#resultIcon { color: #16897E; font-size: 44px; font-weight: 800; }
+QLabel#resultTitle { font-size: 32px; font-weight: 800; }
+QLabel#resultSubtitle { color: #53617A; font-size: 16px; }
+QFrame#destinationCard { background: #17253D; border: none; }
+QLabel#destinationTitle { color: #FFFFFF; font-size: 30px; font-weight: 800; }
+QLabel#destinationSubtitle { color: #CFE9E6; font-size: 17px; }
+QLabel#fieldKey { color: #758197; font-size: 10px; font-weight: 750; letter-spacing: 0.5px; }
+QLabel#fieldValue { color: #1E2E48; font-size: 14px; font-weight: 600; }
+QToolButton { color: #167B73; font-weight: 650; border: none; padding: 8px; }
+QLabel#evidence {
+    background: #162238;
+    color: #DDE7F4;
+    border-radius: 10px;
+    padding: 16px;
+    font-family: "Cascadia Mono", "Consolas";
+}

@@ -1,0 +1,7 @@
+{
+  "assignment_keywords": ["asignado", "asignada", "seleccionado", "seleccionada", "plaza asignada"],
+  "non_selection_keywords": ["no seleccionado", "no seleccionada", "sin asignacion", "sin asignación", "sin plaza asignada", "no asignado", "no asignada"],
+  "exemption_keywords": ["exonerado", "exonerada", "exento", "exenta"],
+  "pending_keywords": ["pendiente", "en revision", "en revisión"],
+  "vacancy_keywords": ["plaza vacante", "vacante"]
+}

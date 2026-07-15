@@ -1,0 +1,29 @@
+{
+  "expected_document_titles": {
+    "PLAZAS_ASIGNADAS": ["reporte de plazas asignadas"],
+    "PLAZAS_VACANTES": ["reporte de plazas vacantes"],
+    "PROFESIONALES_SIN_PLAZA": ["reporte de profesionales sin plaza asignada"]
+  },
+  "column_aliases": {
+    "vacancy_code": ["codigo plaza", "código plaza", "codigo de plaza"],
+    "id_type": ["tipo identificacion", "tipo identificación", "tipo de documento"],
+    "id_number": ["numero de identificacion", "número de identificación", "documento profesional"],
+    "full_name": ["nombre profesional", "nombres y apellidos", "nombre completo"],
+    "department": ["nombre departamento", "departamento"],
+    "municipality": ["nombre municipio", "municipio"],
+    "profession": ["profesion", "profesión"],
+    "reps_code": ["codigo de habilitacion reps", "código de habilitación reps"],
+    "reps_site": ["numero sede reps", "número sede reps"],
+    "institution": ["nombre de la ips sede", "ips sede", "institucion", "institución"],
+    "official_status": ["estado", "resultado", "situacion", "situación"],
+    "modality": ["modalidad"],
+    "assignment_date": ["fecha asignacion", "fecha asignación"],
+    "start_date": ["fecha inicio", "fecha de inicio"],
+    "duration": ["duracion", "duración"],
+    "contact": ["contacto", "telefono", "teléfono", "correo"],
+    "observations": ["observaciones", "observacion", "observación"]
+  },
+  "id_types": ["CC", "CE", "PT", "PA", "TI", "PPT"],
+  "minimum_text_characters_per_document": 40,
+  "fuzzy_name_threshold": 92
+}

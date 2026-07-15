@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.venv-build/
+.venv-build-macos/
+build/pyinstaller/
+build/pyinstaller-macos/
+dist/
+frontend/node_modules/
