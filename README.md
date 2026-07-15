@@ -85,6 +85,8 @@ npm audit
 Los datos automatizados son ficticios. Los PDF oficiales usados para comprobar el parser no se copian al repositorio.
 El archivo [`fixtures/anonymized_records.json`](fixtures/anonymized_records.json) contiene los valores ficticios canónicos para pruebas manuales, demostraciones y nuevas pruebas automatizadas; no representa personas ni instituciones reales.
 
+Para demostrar el resultado `NOT_SELECTED` de la ronda del 16/04/2026, use [`fixtures/demo_profesionales_sin_plaza_16-04-2026.pdf`](fixtures/demo_profesionales_sin_plaza_16-04-2026.pdf) como reemplazo ficticio del reporte vacío e ingrese `999999999999999`. El archivo se puede regenerar con `python scripts/create_demo_without_position_pdf.py` y está rotulado explícitamente como documento no oficial.
+
 Las pautas de seguridad, pruebas y limpieza para contribuir están en [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## Crear el ejecutable de Windows
@@ -108,6 +110,15 @@ chmod +x scripts/build_macos.sh
 ```
 
 El resultado queda en `dist/RuralFindMe.app`. Para distribución pública se debe firmar con Developer ID y notarizar con las herramientas de Apple.
+
+Para aplicar una firma ad-hoc y crear el ZIP portable para compartir de forma privada:
+
+```bash
+chmod +x scripts/make_portable_macos.sh
+./scripts/make_portable_macos.sh
+```
+
+El resultado queda en `dist/RuralFindMe-<versión>-macOS.zip`. Otros usuarios pueden necesitar abrir la aplicación con clic derecho → **Abrir** porque una firma ad-hoc no sustituye la firma Developer ID ni la notarización de Apple.
 
 ## OCR opcional
 

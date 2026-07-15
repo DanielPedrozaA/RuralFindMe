@@ -214,3 +214,14 @@
   background-position: 0 0, 3px 3px;
   background-size: 7px 7px;
 }
+
+.celebration-rays {
+  opacity: 0.16;
+  background: repeating-conic-gradient(
+    from 0deg,
+    transparent 0deg 8deg,
+    rgba(251, 248, 243, 0.42) 8deg 12deg,
+    transparent 12deg 22deg
+  );
+  mask-image: radial-gradient(circle, black 0 52%, transparent 75%);
+}

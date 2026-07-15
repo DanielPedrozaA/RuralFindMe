@@ -1,8 +1,14 @@
 # -*- mode: python ; coding: utf-8 -*-
 from pathlib import Path
+import re
 
 root = Path(SPECPATH)
 icon = root / "app" / "assets" / "app-icon.icns"
+version_source = (root / "app" / "__init__.py").read_text(encoding="utf-8")
+version_match = re.search(r'__version__\s*=\s*"([^"]+)"', version_source)
+if not version_match:
+    raise RuntimeError("No se pudo leer la versión desde app/__init__.py")
+app_version = version_match.group(1)
 a = Analysis(
     [str(root / "app" / "main.py")],
     pathex=[str(root)],
@@ -50,6 +56,6 @@ app = BUNDLE(
     name="RuralFindMe.app",
     icon=str(icon),
     bundle_identifier="co.ruralfindme.app",
-    version="1.1.3",
+    version=app_version,
     info_plist={"NSHighResolutionCapable": "True"},
 )

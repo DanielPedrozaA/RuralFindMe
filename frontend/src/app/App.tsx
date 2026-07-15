@@ -17,9 +17,11 @@ import {
   Hash,
   LoaderCircle,
   MapPin,
+  PartyPopper,
   RotateCcw,
   Search,
   ShieldCheck,
+  Sparkles,
   Stethoscope,
   Upload,
   Users,
@@ -727,7 +729,104 @@ const AssignedScreen = ({ result, onExport, onCopy, onAgain, reducedAnimation }:
   );
 };
 
-const StatusScreen = ({ result, exempt, onExport, onCopy, onAgain }: { result: SearchResultPayload; exempt: boolean; onExport: () => void; onCopy: () => void; onAgain: () => void }) => {
+const NotSelectedCelebration = ({ result, onExport, onCopy, onAgain, reducedAnimation }: { result: SearchResultPayload; onExport: () => void; onCopy: () => void; onAgain: () => void; reducedAnimation: boolean }) => {
+  const record = result.record;
+  useEffect(() => {
+    if (reducedAnimation) return;
+    const colors = ["#FCD116", "#FF8A3D", "#FBF8F3", "#7CC49A", "#CE1126", "#003087"];
+    const timers: number[] = [];
+    confetti({
+      particleCount: 220,
+      spread: 125,
+      startVelocity: 58,
+      origin: { y: 0.58 },
+      colors,
+      ticks: 300,
+      scalar: 1.15,
+    });
+    for (let burst = 0; burst < 12; burst += 1) {
+      timers.push(window.setTimeout(() => {
+        confetti({ particleCount: 24, angle: 58, spread: 72, startVelocity: 48, origin: { x: 0, y: 0.72 }, colors, ticks: 240 });
+        confetti({ particleCount: 24, angle: 122, spread: 72, startVelocity: 48, origin: { x: 1, y: 0.72 }, colors, ticks: 240 });
+      }, 280 + burst * 210));
+    }
+    [[0.18, 0.32], [0.82, 0.27], [0.34, 0.2], [0.68, 0.18]].forEach(([x, y], index) => {
+      timers.push(window.setTimeout(() => confetti({
+        particleCount: 95,
+        spread: 360,
+        startVelocity: 34,
+        origin: { x, y },
+        colors,
+        ticks: 220,
+        scalar: 0.95,
+      }), 650 + index * 620));
+    });
+    return () => timers.forEach(window.clearTimeout);
+  }, [reducedAnimation]);
+
+  const sparkles = [
+    ["8%", "18%", 0], ["17%", "68%", 0.6], ["28%", "10%", 1.1],
+    ["72%", "12%", 0.3], ["84%", "64%", 1.4], ["92%", "22%", 0.9],
+  ];
+  return (
+    <Shell>
+      <div className="relative min-h-screen overflow-x-hidden overflow-y-auto bg-primary text-primary-foreground flex flex-col">
+        <PaperGrain />
+        <motion.div
+          className="celebration-rays absolute left-1/2 top-1/2 w-[110vmax] h-[110vmax] -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+          animate={reducedAnimation ? {} : { rotate: 360 }}
+          transition={{ duration: 55, ease: "linear", repeat: Infinity }}
+          aria-hidden="true"
+        />
+        {sparkles.map(([left, top, delay], index) => (
+          <motion.div
+            key={`${left}-${top}`}
+            className="absolute text-accent pointer-events-none"
+            style={{ left, top }}
+            animate={reducedAnimation ? {} : { y: [-8, 10, -8], scale: [0.8, 1.25, 0.8], rotate: [0, 22, 0] }}
+            transition={{ duration: 2.8 + index * 0.2, delay: Number(delay), repeat: Infinity, ease: "easeInOut" }}
+            aria-hidden="true"
+          >
+            <Sparkles size={index % 2 ? 28 : 40} />
+          </motion.div>
+        ))}
+        <header className="relative z-20 flex items-center justify-between px-10 max-sm:px-5 py-5 border-b border-primary-foreground/12">
+          <div className="flex items-center gap-2.5"><OrchidMotif className="w-7 h-7 text-accent" /><span className="font-mono text-caption tracking-[0.18em] uppercase text-primary-foreground/65">SSO · La mejor noticia</span></div>
+          <span className="font-mono text-caption text-primary-foreground/65">{result.allocation_round ? `Ronda ${result.allocation_round}` : "Ronda definida por los PDF"}</span>
+        </header>
+        <main className="relative z-10 flex-1 flex items-center justify-center px-8 py-12">
+          <div className="w-full max-w-[840px] text-center">
+            <motion.div initial={{ opacity: 0, scale: 0.5, rotate: -12 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 170, damping: 13 }} className="mx-auto w-24 h-24 rounded-full bg-accent text-accent-foreground flex items-center justify-center shadow-[0_0_70px_rgba(181,85,36,.55)] mb-7">
+              <PartyPopper size={46} strokeWidth={1.7} />
+            </motion.div>
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="font-mono text-caption tracking-[0.35em] uppercase text-accent font-semibold mb-4">¡Una noticia enorme!</motion.p>
+            <motion.h1 initial={{ opacity: 0, y: 30, scale: 0.94 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 0.25, duration: 0.8, ease: EASE_STANDARD }} className="font-serif text-[clamp(4rem,9vw,7.5rem)] leading-[0.88] mb-7">
+              ¡No fuiste<br /><span className="italic text-accent">seleccionado/a!</span>
+            </motion.h1>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }} className="text-lg text-primary-foreground/70 max-w-content mx-auto mb-9">
+              El reporte de esta ronda registra explícitamente que no tienes una plaza asignada.
+            </motion.p>
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.6 }} className="bg-card text-card-foreground rounded-2xl border border-primary-foreground/15 p-7 max-w-content mx-auto text-left shadow-2xl">
+              <div className="flex items-start gap-4 mb-5">
+                <div className="w-11 h-11 rounded-xl bg-success text-success-foreground flex items-center justify-center flex-shrink-0"><Check size={22} strokeWidth={3} /></div>
+                <div><p className="font-mono text-micro tracking-[0.18em] uppercase text-muted-foreground mb-1">Estado publicado</p><p className="font-serif text-2xl">{record?.official_status || "Profesional sin plaza asignada"}</p></div>
+              </div>
+              <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-3 text-small mb-5">
+                <div className="bg-secondary/60 rounded-xl p-4"><p className="text-micro uppercase tracking-widest text-muted-foreground mb-1">Identificación</p><p className="font-semibold">{result.masked_id}</p></div>
+                {record && <div className="bg-secondary/60 rounded-xl p-4"><p className="text-micro uppercase tracking-widest text-muted-foreground mb-1">Fuente oficial cargada</p><p className="font-semibold break-words">{record.source_file} · pág. {record.source_page}</p></div>}
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed border-t border-border pt-4">Celebra este resultado y verifica siempre la publicación oficial. La aplicación conserva la terminología exacta del PDF y no convierte automáticamente el estado en una condición jurídica distinta.</p>
+              <ResultActions onExport={onExport} onCopy={onCopy} onAgain={onAgain} />
+            </motion.div>
+          </div>
+        </main>
+      </div>
+    </Shell>
+  );
+};
+
+const StatusScreen = ({ result, exempt, onExport, onCopy, onAgain, reducedAnimation }: { result: SearchResultPayload; exempt: boolean; onExport: () => void; onCopy: () => void; onAgain: () => void; reducedAnimation: boolean }) => {
+  if (!exempt) return <NotSelectedCelebration result={result} onExport={onExport} onCopy={onCopy} onAgain={onAgain} reducedAnimation={reducedAnimation} />;
   const record = result.record;
   return (
     <Shell>
@@ -923,8 +1022,8 @@ export default function App() {
           {screen === "identification" && <IdentificationScreen round={allocationRound} onBack={() => setScreen("upload")} onNext={startSearch} />}
           {screen === "preparation" && <PreparationScreen stageQueue={stageQueue} resultReady={resultReady} onComplete={revealResult} reducedAnimation={backendState.reduced_animation} />}
           {screen === "result-assigned" && result && <AssignedScreen result={result} {...actions} reducedAnimation={backendState.reduced_animation} />}
-          {screen === "result-exempt" && result && <StatusScreen result={result} exempt {...actions} />}
-          {screen === "result-not-selected" && result && <StatusScreen result={result} exempt={false} {...actions} />}
+          {screen === "result-exempt" && result && <StatusScreen result={result} exempt {...actions} reducedAnimation={backendState.reduced_animation} />}
+          {screen === "result-not-selected" && result && <StatusScreen result={result} exempt={false} {...actions} reducedAnimation={backendState.reduced_animation} />}
           {screen === "result-not-found" && result && <NotFoundScreen result={result} onRetry={again} onRestart={() => setScreen("upload")} />}
           {screen === "result-ambiguous" && result && <AmbiguousScreen result={result} onRestart={() => setScreen("upload")} />}
           {screen === "result-error" && <ErrorScreen message={processingError || result?.reasons.join(" ") || "Error de procesamiento."} onRestart={() => setScreen("upload")} />}
